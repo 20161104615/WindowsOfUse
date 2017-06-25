@@ -2,9 +2,10 @@
 int main(){
     int i,n,k;
     char DLOfGPRMCNumber[24],DLOfGPGGANumber[24];
-    FILE *f,*p;
+    FILE *f,*p,*t;
     f = fopen ("GPS.txt","r+");
     p = fopen ("GPS.txt","r+");
+    t = fopen ("GPS.csv","w"); 
     printf("请输入查询的行数：");
     scanf("%d",&k);
     if (f==NULL&&p==NULL){
@@ -20,6 +21,9 @@ int main(){
 	        }
 	        fseek(f,0L,SEEK_SET);
 	        printf("\n");
+	        fseek(f, 16+n*125L, SEEK_CUR);
+	        fprintf(t,"%s\n",DLOfGPRMCNumber);
+	        fseek(f,0L,SEEK_SET);
 	        fseek(p, 78+n*125L, SEEK_CUR);
 	    	printf("GPGGA经纬度为：");
 	        for (i=0;i<22;i++){
@@ -28,6 +32,9 @@ int main(){
 	        }
 	        fseek(p,0L,SEEK_SET); 
 	        printf("\n");
+	        fseek(p, 78+n*125L, SEEK_CUR);
+	        fprintf(t,"%s\n",DLOfGPGGANumber);
+	        fseek(p,0L,SEEK_SET); 
 		} 
         fclose(f);
         fclose(p);
