@@ -2,7 +2,7 @@
 #include "string.h"
 int main(){
     int i,n,k;
-    char DLOfGPRMCNumber[24],DLOfGPGGANumber[24],time[6],timeofh[3],timeofm[3],timeofs[3],date[6],dateofy[3],dateofm[3],dateofd[3];
+    char DLOfGPRMCNumber[24],DLOfGPGGANumber[24],time[6],timeofh[3],timeofm[3],timeofs[3],date[6],dateofy[3],dateofm[3],dateofd[3],satellitenum[2],altitude[5];
     FILE *f,*p,*t;
     char *m,*g,*l;
     f = fopen ("GPS.txt","r+");
@@ -14,8 +14,9 @@ int main(){
         printf("文件打开失败!\n");
     }
     else {
-        fprintf(t,"时间,时,分,秒,纬度,N/S,经度,E/W,年,月,日\n");
+        fprintf(t,"GPRMC/GPGGA,时间,时,分,秒,纬度,N/S,经度,E/W,年,月,日,卫星数量,海拔高度\n");
             for(n=0;n<k;n++){
+            	fprintf(t,"GPRMC,");
                 fseek(f, 7+n*125L, SEEK_CUR);
                 printf("GPRMC的时间为：");
                 for (i=0;i<6;i++){
@@ -71,7 +72,7 @@ int main(){
                 
                 
                 
-                
+                fprintf(t,"GPGGA,");
                 fseek(p, 71+n*125L, SEEK_CUR);
                 printf("GPGGA时间为：");
                 for (i=0;i<6;i++){
@@ -98,12 +99,32 @@ int main(){
                     fscanf(p,"%c",&DLOfGPGGANumber[i]);
                     printf("%c",DLOfGPGGANumber[i]);
                 }
-                fprintf(t,"%s,\n",DLOfGPGGANumber);
+                fprintf(t,"%s,",DLOfGPGGANumber);
                 fseek(p,0L,SEEK_SET);
                 printf("\n");
+                
+                fseek(p,103+n*125L,SEEK_CUR);
+				printf("使用卫星数量为：");
+				for (i=0;i<2;i++){
+					fscanf(p,"%c",&satellitenum[i]);
+					printf("%c",satellitenum[i]);
+				} 
+				satellitenum[2]='\0';
+				fprintf(t,",,,%s,",satellitenum);
+				fseek(p,0L,SEEK_SET);
+				printf("\n");
+				
+				fseek(p,107+n*125L,SEEK_CUR);
+				printf("海拔高度:");
+				for (i=0;i<4;i++){
+					fscanf(p,"%c",&altitude[i]);
+					printf("%c",altitude[i]);
+				}
+				altitude[4]='\0';
+				fprintf(t,"%s,\n",altitude);
+				fseek(p,0L,SEEK_SET);
+				printf("\n");
         }
-        free(l);
-        free(g);
         fclose(f);
         fclose(p);
     }
