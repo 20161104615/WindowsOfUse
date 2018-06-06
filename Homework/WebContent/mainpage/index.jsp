@@ -1,21 +1,21 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-  <meta charset="utf-8">
+
+<head>
   <title>MainPage</title>
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <link rel="stylesheet" href="./layui/css/layui.css" media="all">
   <link rel="stylesheet" href="./css/admin.css" media="all">
   
-  <script>
-  ///^http(s*):\/\//.test(location.href) || alert('è¯·åé¨ç½²å° localhost ä¸åè®¿é®');
-  </script>
+  
 </head>
 <body class="layui-layout-body">
-  
-  <div id="LAY_app">
+ <div id="LAY_app">
     <div class="layui-layout layui-layout-admin">
       <div class="layui-header">
         <!-- å¤´é¨åºå -->
@@ -49,46 +49,46 @@
           
           <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">
             <li data-name="home" class="layui-nav-item">
-              <a href="javascript:;" lay-tips="ä¸»é¡µ" lay-direction="2">
+              <a href="javascript:;" lay-tips="主页" lay-direction="2">
                 <i class="layui-icon layui-icon-home"></i>
-                <cite>用户</cite>
+                <cite>主页</cite>
               </a>
             </li>
             <li data-name="user" class="layui-nav-item">
-              <a href="javascript:;" lay-tips="ç¨æ·" lay-direction="2">
+              <a href="javascript:;" lay-tips="用户" lay-direction="2">
                 <i class="layui-icon layui-icon-user"></i>
-                <cite>ç¨æ·</cite>
+                <cite>用户</cite>
               </a>
               <dl class="layui-nav-child">
                 <dd>
-	              <a lay-href="/Homework/personinformation/demo.jsp" lay-tips="ä¸ªäººä¿¡æ¯" lay-direction="2">
+	              <a lay-href="/Homework/personinformation/demo.jsp" lay-tips="个人信息" lay-direction="2">
 	                
-	                <cite>ä¸ªäººä¿¡æ¯</cite>
+	                <cite>个人信息</cite>
 	              </a>
                 </dd>
                 <dd>
-	              <a href="/Homework/mainpage/index.html" lay-tips="éåºç»é" lay-direction="2">
-	                <cite>éåºç»é</cite>
+	              <a href="/Homework/mainpage/index.jsp" lay-tips="退出登陆" lay-direction="2">
+	                <cite>退出登陆</cite>
 	              </a>
                 </dd>
               </dl>
             </li>
             
             <li data-name="set" class="layui-nav-item">
-              <a href="javascript:;" lay-tips="è®¢å" >
+              <a href="javascript:;" lay-tips="查询" >
                 <i class="layui-icon layui-icon-set"></i>
-                <cite>è®¢å</cite>
+                <cite>查询</cite>
               </a>
               <dl class="layui-nav-child">
                 <dd>
-                  <a href="javascript:;">è®¢åé¢è§</a>
+                  <a href="javascript:;" lay-tips="图书查询">图书查询</a>
                   <dl class="layui-nav-child">
-                    <dd><a lay-href="set/system/website.html">NULL</a></dd>
-                    <dd><a lay-href="set/system/email.html">NULL</a></dd>
+                    <dd><a lay-href="set/system/website.html" lay-tips="书名查询">书名查询</a></dd>
+                    <dd><a lay-href="set/system/email.html" lay-tips="作者查询">作者查询</a></dd>
                   </dl>
                 </dd>
                 <dd>
-                  <a href="javascript:;">è®¢åæ¥è¯¢</a>
+                  <a href="javascript:;" lay-tips="订单查询">订单查询</a>
                   <dl class="layui-nav-child">
                     <dd><a lay-href="set/user/info.html">NULL</a></dd>
                     <dd><a lay-href="set/user/password.html">NULL</a></dd>
@@ -98,29 +98,25 @@
             </li>
             
             <li data-name="set" class="layui-nav-item">
-              <a lay-href="/Homework/ShoppingCart/ShoppingCart.jsp" lay-tips="è´­ç©è½¦" lay-direction="2">
+              <a lay-href="/Homework/ShoppingCart/ShoppingCart.jsp" lay-tips="购物车" lay-direction="2">
 	                <i class="layui-icon layui-icon-senior"></i>
-	                <cite>è´­ç©è½¦</cite>
+	                <cite>购物车</cite>
 	          </a>
             </li>
             
             <li data-name="set" class="layui-nav-item">
-              <a href="javascript:;" lay-tips="è®¢å" >
+              <a href="javascript:;" lay-tips="订单" >
                 <i class="layui-icon layui-icon-template"></i>
-                <cite>å¾ä¹¦</cite>
+                <cite>订单</cite>
               </a>
               <dl class="layui-nav-child">
                 <dd>
-                  <a lay-href="/Homework/WebContent/PreviewOrderForm/PreviewOrderForm.jsp">
-                  	å¾ä¹¦æ¥è¯¢
+                  <a lay-href="/Homework/WebContent/PreviewOrderForm/PreviewOrderForm.jsp" lay-tips="确认订单">
+                  	确认订单
                   </a>
                 </dd>
                 <dd>
-                  <a href="javascript:;">å¾ä¹¦æè¦</a>
-                  <dl class="layui-nav-child">
-                    <dd><a lay-href="set/user/info.html">NULL</a></dd>
-                    <dd><a lay-href="set/user/password.html">NULL</a></dd>
-                  </dl>
+                  <a lay-href="set/user/info.html" lay-tips="订单预览">订单预览</a>
                 </dd>
               </dl>
             </li>
@@ -178,5 +174,3 @@
   </script>
 </body>
 </html>
-
-

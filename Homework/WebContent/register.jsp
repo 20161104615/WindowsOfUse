@@ -85,13 +85,13 @@ canvas {
 	        	<input type="text" placeholder="请输入注册账号" name="UserName" />
 	        </div>
 	        <div class="Register-input-box">
-	        	<input type="password" placeholder="请输入密码" name="Password_Fir" />
+	        	<input type="text" placeholder="请输入ID" name="UserID" />
 	        </div>
 	        <div class="Register-input-box">
-	        	<input type="password" placeholder="请确认密码" name="Password_Sec" />
+	        	<input type="password" placeholder="请输入密码" name="Password_Fir" />
 	        </div>
 	        <div class="Register-button-box" align="center">
-	        <button>Register</button>
+	        	<button type="submit">Register</button>
 	        </div>
         </form>
     </div>

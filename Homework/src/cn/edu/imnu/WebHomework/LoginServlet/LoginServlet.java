@@ -2,16 +2,16 @@ package cn.edu.imnu.WebHomework.LoginServlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import cn.edu.imnu.WebHomework.UserDao.dao.UserDao;
-
 
 /**
  * Servlet implementation class LoginServlet
@@ -45,36 +45,32 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		
-		String name = request.getParameter("UserName");// 获取当前登陆页输入的用户名
-		String password = request.getParameter("Password");// 获取当前登陆页面输入的 密码
-		
-		UserDao dao = new UserDao();
-		boolean flag = dao.isExistName(name);
-		
-		if (flag){
-			out.print("<script type='text/javascript'>");
-			out.print("alert('账号已经被注册，请重新输入！');");
-			out.print("windows.location='register.jsp';");
-			out.print("</script>");
-		}else {
-			dao.save(name,password);
-			response.sendRedirect("/mainpage/index.html");
-		}
-		/*
-		response.setContentType("text/html;charset=UTF-8");
-		
-		HttpSession session = request.getSession();
-		//获取请求数据
-		String username = request.getParameter("UserName");
-		String password = request.getParameter("Password");
 
-		if (username.equals("root") && password.equals("290013")) {
-			response.sendRedirect("/Homework/mainpage/index.html");
-		} else {
-			response.sendRedirect("login.jsp");
-		}*/
+		String Name = request.getParameter("UserName");// 获取当前登陆页输入的用户名
+		String Password = request.getParameter("Password");// 获取当前登陆页面输入的 密码֤
+		//访问登陆页面之前所访问的页面
+		String returnUri = request.getParameter("return_Uri");
+		UserDao dao = new UserDao();
+		boolean applicantID = dao.login(Name, Password);
+
+		try {
+			if (applicantID == true) {
+				out.print("<script type='text/javascript'>");
+				out.print("alert('登陆成功');");
+				out.print("</script>");
+				response.sendRedirect("/Homework/mainpage/index.jsp");
+			} else {
+				out.print("<script type='text/javascript'>");
+				out.print("alert('用户名或密码错误，请重新输入');");
+				out.print("window.location='login.jsp';");
+				out.print("</script>");
+			}
+		} catch (Exception e) {
+			out.println("Error.");
+		}
+
 	}
 }

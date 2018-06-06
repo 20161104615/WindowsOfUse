@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="com.mysql.jdbc.*"%>
+<%@ page import="java.sql.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Login</title>
+</script>
 <style type="text/css">
 body {
 	background-repeat: no-repeat;
@@ -123,7 +126,7 @@ canvas {
 <body>
 	<canvas id="sakura"></canvas>
 	<div class="login-header" align="center">书有汇用户登陆</div>
-	<form action="LoginServlet" method="POST">
+	<form action="LoginServlet" method="POST" name="loginform">
 		<div class="login-input-box" align="center">
 			<span class="icon icon-user"></span> 
 			<input type="text" name="UserName" placeholder="请输入账号">
@@ -132,18 +135,28 @@ canvas {
 			<span class="icon icon-password"></span> 
 			<input type="password" name="Password" placeholder="请输入密码">
 		</div>
-	<div class="login-button-box" name="Login" align="center">
-		<button>登陆</button>
-	</div>
+		<div class="login-button-box" name="Login" align="center">
+			<button>登陆</button>
+		</div>
 	</form>
 	<div class="logon-box">
 		<a href="register.jsp">注册</a> <a href="">忘记密码</a>
 	</div>
 </body>
 <style type="text/css">
-*{margin:0;padding:0;list-style-type:none;}
-a,img{border:0;}
-body{font:12px/180% Arial, Helvetica, sans-serif, "新宋体";}
+* {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+a, img {
+	border: 0;
+}
+
+body {
+	font: 12px/180% Arial, Helvetica, sans-serif, "新宋体";
+}
 </style>
 
 <!-- sakura shader -->
