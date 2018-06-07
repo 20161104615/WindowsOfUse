@@ -56,14 +56,14 @@ public class LoginServlet extends HttpServlet {
 		String Password = request.getParameter("Password");// 获取当前登陆页面输入的 密码֤
 		
 		DB_User db_user = new DB_User();
-		
+	
 		boolean applicat  = db_user.login(Name, Password);
-		
 		if (applicat == true){
 			//创建session对象
 			HttpSession session = request.getSession();
 			//把数据保存在session域对象中
 			request.getSession().setAttribute("loginName", Name);
+			request.getSession().setAttribute("loginPassword",Password);
 			
 			out.print("<script type='text/javascript'>");
 			out.print("alert('登陆成功');");

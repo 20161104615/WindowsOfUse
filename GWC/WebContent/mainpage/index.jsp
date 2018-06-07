@@ -61,7 +61,7 @@
               </a>
               <dl class="layui-nav-child">
                 <dd>
-	              <a lay-href="/GWC/personinformation/demo.jsp" lay-tips="个人信息" lay-direction="2">
+	              <a lay-href="/GWC/personinformation/index.jsp" lay-tips="个人信息" lay-direction="2">
 	                
 	                <cite>个人信息</cite>
 	              </a>

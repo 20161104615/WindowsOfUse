@@ -133,27 +133,32 @@ public class DB_User {
 	}
 
 	// 查询用户
-	public User get(String username) {
-		String sql = "select userName from user where userName='" + username + "'";
-		java.sql.Statement stmt;
-		try {
-			stmt = db_conn.createStatement();
-			java.sql.ResultSet rs = stmt.executeQuery(sql);
-			User user = null;
-			if (rs.next()) {
-				user = new User();
-				user.setuserName(rs.getString("userName"));
-				user.setuserPassword(rs.getString("userPassword"));
-				user.setuserID(rs.getString("userID"));
-			}
-			stmt.executeUpdate(sql);
-			db_conn.close();
-			return user;
+	public void get(String username,String password) {
+		boolean y = false;
+		y = login(username,password);
+		if (y != false){
+			String sql = "select userName from user where userName='" + username + "'";
+			java.sql.Statement stmt;
+			try {
+				stmt = db_conn.createStatement();
+				java.sql.ResultSet rs = stmt.executeQuery(sql);
+				
+				if (rs.next()) {
+					System.out.println(rs.getString("userName"));
+					System.out.println(rs.getString("userPassword"));
+					System.out.println(rs.getString("userID"));
+				}
+				stmt.executeUpdate(sql);
+				db_conn.close();
+				
 
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				
+			}
+		} else {
+			System.out.println("Error");
 		}
 	}
 	

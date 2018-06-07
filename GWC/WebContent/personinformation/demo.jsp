@@ -220,11 +220,13 @@
         </style>
       </defs>
       <title>Artboard 1</title>
-      <text class="cls-1" transform="translate(108 1865)">
-	  TEST0
+      <text class="cls-1" transform="translate(100 1865)"> 
+	  Modify
 	  </text>
-      <text class="cls-5" transform="translate(57 1930)">
-	  TEST1
+      <text class="cls-5" transform="translate(47 1900)">
+	      <tspan x="7" y="19">&nbsp Do you want to modify</tspan>
+	      <tspan x="6" y="38">your personal information?</tspan>
+	  
 	  </text>
       <text class="cls-1" transform="translate(107 1566)">
 	  TEST2
@@ -314,7 +316,7 @@ var tspan_delta = 16;
 
 //name is used as the title for the bubble
 //icon is the id of the corresponding svg symbol
-var services_data = [{ name: "姓名", icon: "industries" }, { name: "ID", icon: "validation" }, { name: "邮箱", icon: "engineering" }, { name: "性别", icon: "management" }, { name: "联系方式", icon: "manufacturing" }, { name: "密码", icon: "technical" }, { name: "返回", icon: "process" }];
+var services_data = [{ name: "姓名", icon: "industries" }, { name: "ID", icon: "validation" }, { name: "邮箱", icon: "engineering" }, { name: "性别", icon: "management" }, { name: "联系方式", icon: "manufacturing" }, { name: "密码", icon: "technical" }, { name: "修改", icon: "process" }];
 
 var services = document.getElementById("service-collection");
 var nav_container = document.getElementById("circle-nav-services");
@@ -351,7 +353,7 @@ function addService(serv, index) {
   });
   var circle_shadow = circle.cloneNode();
   setAttributes(circle, {
-    class: 'shadow'
+    //class: 'shadow'
   });
   icon_group.appendChild(circle_shadow);
   icon_group.appendChild(circle);
