@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 要符合规范，在XML文件的开头加上WEB-APP,否则通不过DTD的验证 -->
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <filter>
+    <filter-name>LoginFilter</filter-name>
+    <filter-class>Filter.LoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>LoginFilter</filter-name>
+    <url-pattern>/mainpage/*</url-pattern>
+    <url-pattern>/personinformation/*</url-pattern>
+  </filter-mapping>
+</web-app>

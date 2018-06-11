@@ -2,6 +2,7 @@ package cn.edu.imnu.WebHomework.Register;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -61,15 +62,32 @@ public class RegisterServlet extends HttpServlet {
 		user.setuserPassword(password_Fir);
 		user.setuserID(userID);
 		
-		boolean applicant1 = db_user.checkname(user);
-		boolean applicant2 = db_user.checkid(user);
+		boolean applicant1 = false;
+		try {
+			applicant1 = db_user.checkname(user);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		boolean applicant2 = false;
+		try {
+			applicant2 = db_user.checkid(user);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		if (applicant1 == true || applicant2 == true){
 			out.print("<script type='text/javascript'>");
 			out.print("alert('用户名、ID已被注册或不合法');");
 			out.print("window.location='register.jsp';");
 			out.print("</script>");
 		} else {
-			db_user.add(user);
+			try {
+				db_user.add(user);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			out.print("<script type='text/javascript'>");
 			out.print("alert('注册成功');");
 			out.print("window.location.href ='http://localhost:8080/GWC/mainpage/index.jsp';");

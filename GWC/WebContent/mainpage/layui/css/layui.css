@@ -1203,7 +1203,7 @@ a cite {
 		width: 91.66666667%
 	}
 	.layui-col-md12 {
-		width: 100%
+		width: 100%;
 	}
 	.layui-col-md-offset1 {
 		margin-left: 8.33333333%

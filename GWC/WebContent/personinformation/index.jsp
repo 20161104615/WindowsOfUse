@@ -39,8 +39,8 @@
 					Hi, I am Rabbit, Web developer from michigan, US. I am passionate about design, development and interaction. I really love what I do.
 				</p>
 				<div class="btn-group-vertical custom_btn animated slideinright">
-					<div id="about" class="btn btn-rabbit">About</div>
-					<div id="work" class="btn btn-rabbit">Work</div>
+					<div id="about" class="btn btn-rabbit">个人信息</div>
+					<div id="work" class="btn btn-rabbit">修改信息</div>
 					<div id="contact" class="btn btn-rabbit">Contact</div>
 				</div>      
 			</div>
@@ -63,14 +63,14 @@
 					<h2 class="page-title" text-center>About</h2>
 					<div class="marker">a</div>
 				</div>
-				<p class='subtitle'>Hi, I am chris Howard. A freelance web designer, front-end developer and digital planner based in US.
+				<p class='subtitle'>Hi, I am <% 
+												String loginName = (String) session.getAttribute("loginName");
+												out.print(loginName);
+											 %>
+									. A freelance web designer, front-end developer and digital planner based in US.
 				</p>
 				<p class="info">
-					<%
-		  				String loginName = (String) session.getAttribute("loginName");
-		  				String loginPassword = (String) session.getAttribute("loginPassword");
-		  				user.get(loginName,loginPassword);
-		  			%>
+					test
 				</p>  
 			</div>
 		</div>
@@ -92,9 +92,12 @@
 					<h2 class="page-title" text-center>Work</h2>
 					<div class="marker">w</div>
 				</div>
-				<p class='subtitle'>This is a selection of my web design and development work. I've been involve in many different types of project.
+				<p class='subtitle'>
+					Do you want to change your personal information? 
 				</p>
-				<p class="info">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
+				<p class="info">
+					<a href="/GWC/personinformation/index3.html">Yes</a>   or   <a href="#">No</a>
+				</p>
 			</div>
 		</div>
 	</div>    

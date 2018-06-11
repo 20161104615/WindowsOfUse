@@ -21,7 +21,7 @@ public class DB_User {
 	Connection db_conn = DBUtil.getConnection();
 
 	// 用户登陆
-	public boolean login(String name, String password) {
+	public boolean login(String name, String password) throws SQLException {
 		boolean y = false;
 		try {
 			String sql = "select * from user where userName='" + name + "' and userPassword='" + password + "'";
@@ -35,12 +35,13 @@ public class DB_User {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			db_conn.close();
 			return y;
 		}
 	}
 	
 	//检测用户是否存在
-	public boolean checkname(User user){
+	public boolean checkname(User user) throws SQLException{
 		boolean y = false;
 		String sql = "select * from user where userName='" +user.getuserName()+ "'";
 		java.sql.Statement stmt;
@@ -55,10 +56,11 @@ public class DB_User {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			db_conn.close();
 			return y;
 		}
 	}
-	public boolean checkid(User user){
+	public boolean checkid(User user) throws SQLException{
 		boolean y = false;
 		String sql = "select * from user where userID='" +user.getuserID()+ "'";
 		java.sql.Statement stmt;
@@ -73,12 +75,13 @@ public class DB_User {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			db_conn.close();
 			return y;
 		}
 	}
 	
 	// 添加注册用户
-	public boolean add(User user) {
+	public boolean add(User user) throws SQLException {
 		try {
 			String sql = "insert into user(userName,userPassword,userID) values(?,?,?)";
 			PreparedStatement stmt = db_conn.prepareStatement(sql);
@@ -93,12 +96,13 @@ public class DB_User {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Error.");
+			db_conn.close();
 			return false;
 		}
 	}
 
 	// 修改用户信息
-	public boolean update(User user) {
+	public void update(User user) {
 		try {
 			String sql = "update user set userName=?,userPassword=? where userID='" + user.getuserID() + "'";
 			PreparedStatement stmt = db_conn.prepareStatement(sql);
@@ -106,11 +110,10 @@ public class DB_User {
 			stmt.setString(2, user.getuserPassword());
 			stmt.executeUpdate();
 			db_conn.close();
-			return true;
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("Error.");
-			return false;
 		}
 	}
 
@@ -133,7 +136,7 @@ public class DB_User {
 	}
 
 	// 查询用户
-	public void get(String username,String password) {
+	public void get(String username,String password) throws SQLException {
 		boolean y = false;
 		y = login(username,password);
 		if (y != false){
@@ -155,7 +158,7 @@ public class DB_User {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				
+				db_conn.close();
 			}
 		} else {
 			System.out.println("Error");
@@ -172,5 +175,6 @@ public class DB_User {
 	public void outputID(User user){
 		System.out.println(user.getuserID());
 	}
+	
 	
 }

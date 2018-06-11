@@ -14,6 +14,7 @@
   
   
 </head>
+<jsp:useBean id="user" class="UserJavaBean.DB_User" scope="session" />
 <body class="layui-layout-body">
  <div id="LAY_app">
     <div class="layui-layout layui-layout-admin">
@@ -151,7 +152,7 @@
       <!-- ä¸»ä½åå®¹ -->
       <div class="layui-body" id="LAY_app_body">
         <div class="layadmin-tabsbody-item layui-show">
-          <iframe src="console.html" frameborder="0" class="layadmin-iframe"></iframe>
+          <iframe src="console.jsp" frameborder="0" class="layadmin-iframe"></iframe>
         </div>
       </div>
       

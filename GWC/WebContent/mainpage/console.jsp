@@ -13,7 +13,7 @@
 </head>
 <body>
 <body>
-
+<jsp:useBean id="user" class="UserJavaBean.DB_User" scope="session" />
 	<div class="layui-fluid">
 		<div class="layui-row layui-col-space15">
 			<div class="layui-col-md8">
@@ -22,15 +22,29 @@
 						<div class="layui-card">
 							<div class="layui-card-header">
 								<%
-									String str = "hello word";
-									System.out.print(str);
+									out.print("Hello");
 								%>
 							</div>
 						</div>
 					</div>
 					<div class="layui-col-md6">
 						<div class="layui-card">
-							<div class="layui-card-header">待办事项</div>
+							<div class="layui-card-header">22</div>
+						</div>
+					</div>
+					<div class="layui-col-md12">
+						<div class="layui-card">
+							<div class="layui-card-header">数据概览</div>
+						</div>
+					</div>
+					<div class="layui-col-md12">
+						<div class="layui-card">
+							<div class="layui-card-header">数据概览</div>
+						</div>
+					</div>
+					<div class="layui-col-md12">
+						<div class="layui-card">
+							<div class="layui-card-header">数据概览</div>
 						</div>
 					</div>
 					<div class="layui-col-md12">
@@ -43,19 +57,20 @@
 
 			<div class="layui-col-md4">
 				<div class="layui-card">
-					<div class="layui-card-header">版本信息</div>
+					<div class="layui-card-header">
+						当前登陆用户 : <%
+									String loginName = (String) session.getAttribute("loginName");
+								 	out.print(loginName);
+								 %>
+					</div>
 				</div>
 
 				<div class="layui-card">
-					<div class="layui-card-header">效果报告</div>
+					<div class="layui-card-header"></div>
 				</div>
 
 				<div class="layui-card">
-					<div class="layui-card-header">实时监控</div>
-				</div>
-
-				<div class="layui-card">
-					<div class="layui-card-header">产品动态</div>
+					<div class="layui-card-header"></div>
 				</div>
 			</div>
 		</div>

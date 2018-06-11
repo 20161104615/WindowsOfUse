@@ -57,7 +57,13 @@ public class LoginServlet extends HttpServlet {
 		
 		DB_User db_user = new DB_User();
 	
-		boolean applicat  = db_user.login(Name, Password);
+		boolean applicat = false;
+		try {
+			applicat = db_user.login(Name, Password);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		if (applicat == true){
 			//创建session对象
 			HttpSession session = request.getSession();
