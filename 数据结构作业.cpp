@@ -124,19 +124,15 @@ bool  dele(Ptr L){
 void save(Ptr L){
 	FILE * fp;
 	int num=0; 
-	fp = fopen("E:\\大学\\C\\StudentsScore.txt","a");
+	fp = fopen("E:\\大学\\C\\StudentsScore.txt","w+");
 	if (fp == NULL){
 		printf("Error.");
 	}
 	for (int i=0;i<=L->last;i++){
-		fprintf(fp,"学生学号是：%d",L->elem[i].number);
-		fprintf(fp,"学生成绩是：%d\n",L->elem[i].scour);
+		fprintf(fp,"%d ",L->elem[i].number);
+		fprintf(fp,"%d\n",L->elem[i].scour);
 	}
-	fseek(fp,-3L,2);
-	fscanf(fp,"%d",&num);
-	fseek(fp,0L,0);
-	num=(num+L->last+1);
-	fprintf(fp,"更新总人数：%d\n",num);
+	fprintf(fp,"%d\n",L->last+1);
 	fflush(fp);//刷新缓冲区 
 	fclose(fp);
 }
@@ -151,19 +147,33 @@ void read(Ptr L){
 	fseek(fp,-3L,2);
 	fscanf(fp,"%d",&num);
 	fseek(fp,0L,0);
-	for (int i = 0;i<=num;i++){
+	L->last=num-1;
+	//ftell(fp);
+	for (int i = 0;i<num;i++){
 		fscanf(fp,"%d",&L->elem[i].number);
 		fscanf(fp,"%d",&L->elem[i].scour);
 	}
-	
-	printf("新增后总人数是：%d\n",num);
 	output(L);
+	printf("总人数是：%d\n",num);
 	fclose(fp);
 } 
 
-//排序数据
+//插入排序数据
 void sort(Ptr L){
-	
+	int len = L->last+1;
+	int preIndex,currnet,num;
+	for (int i=1;i<len;i++){
+		preIndex = i-1;
+		currnet = L->elem[i].scour;
+		num = L->elem[i].number;
+		while(preIndex >=0 && L->elem[preIndex].scour > currnet){
+			L->elem[preIndex + 1].scour = L->elem[preIndex].scour;
+			L->elem[preIndex + 1].number = L->elem[preIndex].number;
+			preIndex--;
+		}
+		L->elem[preIndex + 1].scour = currnet;
+		L->elem[preIndex + 1].number = num;
+	}
 }
 
 //主菜单 
@@ -217,6 +227,7 @@ void menu(Ptr L)
 				sort(L);
 				break;
 			case 9:
+				return;
 				break;
 		}
 	}
